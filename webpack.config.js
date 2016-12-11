@@ -4,6 +4,12 @@ var webpack = require('webpack');
 
 module.exports = {
 
+	devServer: {
+		inline: true,
+		context: 'build',
+		port: 9999,
+	},
+
 	entry: './main.js',
 	output: {
 		path: 'build/',

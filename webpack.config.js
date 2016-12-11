@@ -2,7 +2,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 
 
-
 module.exports = {
 
 	entry: './main.js',
@@ -12,7 +11,6 @@ module.exports = {
 	},
 	sassLoader: {
 		includePaths: ['./node_modules/foundation-sites/scss']
-
 	},
 	module: {
 		loaders: [

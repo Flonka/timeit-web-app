@@ -249,7 +249,7 @@ $button-color: $white;
 $button-color-alt: $black;
 $button-radius: $global-radius;
 $button-sizes: (
-  tiny: 0.6rem,
+  tiny: .6rem,
   small: 0.75rem,
   default: 0.9rem,
   large: 1.25rem,
@@ -535,7 +535,7 @@ $switch-margin: $global-margin;
 $switch-paddle-background: $white;
 $switch-paddle-offset: 0.25rem;
 $switch-paddle-radius: $global-radius;
-$switch-paddle-transition: all 0.25s ease-out;
+$switch-paddle-transition: all .25s ease-out;
 
 // 32. Table
 // ---------

@@ -1,38 +1,42 @@
 {
-	"name": "timeit-web-app",
-	"version": "0.0.0",
-	"description": "React web app for timing stuff",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "webpack --progress --colors"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Flonka/timeit-web-app.git"
-	},
-	"keywords": [
-		"React",
-		"webpack",
-		"foundation"
-	],
-	"author": "Flonka",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/Flonka/timeit-web-app/issues"
-	},
-	"homepage": "https://github.com/Flonka/timeit-web-app#readme",
-	"dependencies": {
-		"autoprefixer": "^6.5.3",
-		"clean-webpack-plugin": "^0.1.14",
-		"css-loader": "^0.26.1",
-		"extract-text-webpack-plugin": "^1.0.1",
-		"foundation-sites": "^6.3.0-rc2",
-		"html-webpack-plugin": "^2.24.1",
-		"node-sass": "^4.0.0",
-		"postcss-loader": "^1.2.0",
-		"sass-loader": "^4.0.2",
-		"style-loader": "^0.13.1",
-		"webpack": "^1.14.0"
-	}
+  "name": "timeit-web-app",
+  "version": "0.0.0",
+  "description": "React web app for timing stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flonka/timeit-web-app.git"
+  },
+  "keywords": [
+    "React",
+    "webpack",
+    "foundation"
+  ],
+  "author": "Flonka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Flonka/timeit-web-app/issues"
+  },
+  "homepage": "https://github.com/Flonka/timeit-web-app#readme",
+  "dependencies": {
+    "autoprefixer": "^6.5.3",
+    "clean-webpack-plugin": "^0.1.14",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "foundation-sites": "^6.3.0-rc2",
+    "html-webpack-plugin": "^2.24.1",
+    "node-sass": "^4.0.0",
+    "postcss-loader": "^1.2.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.0",
+    "eslint-plugin-react": "^6.8.0"
+  }
 }

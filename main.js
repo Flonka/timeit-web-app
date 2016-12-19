@@ -1,9 +1,10 @@
-
 require('./style/app.scss')
 
-function helloworld() {
-	console.log('Hello world!');
-}
+import {createStore} from 'redux'
 
+const store = createStore((state, action) => {
+	return console.log(state, action)
+})
 
-helloworld();
+console.log(store)
+

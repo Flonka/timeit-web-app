@@ -1,4 +1,9 @@
+// Webpack Plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+// Post-css plugins
+var autoprefixer = require('autoprefixer')
 
 module.exports = {
 
@@ -12,7 +17,6 @@ module.exports = {
 			}
 		}
 	},
-
 	entry: './main.js',
 	output: {
 		path: 'build/',
@@ -21,11 +25,15 @@ module.exports = {
 	sassLoader: {
 		includePaths: ['./node_modules/foundation-sites/scss']
 	},
+	postcss: [autoprefixer({browsers: ['last 2 versions']})],
 	module: {
 		loaders: [
 			{
 				test: /\.scss$/,
-				loader: 'style!css!sass'
+				loader: ExtractTextPlugin.extract(
+					'style-loader',
+					'css-loader!postcss-loader!sass-loader'
+				)
 			},
 			{
 				test: /\.jsx?$/,
@@ -39,5 +47,6 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './index.html'
 		}),
+		new ExtractTextPlugin('styles.[contenthash].css', {allChunks: true}),
 	]
 }

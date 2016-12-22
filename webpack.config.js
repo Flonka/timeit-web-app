@@ -1,12 +1,12 @@
 // Webpack Plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var webpack = require('webpack')
 
 // Post-css plugins
 var autoprefixer = require('autoprefixer')
 
 module.exports = {
-
 	devServer: {
 		inline: true,
 		context: 'build',
@@ -17,7 +17,7 @@ module.exports = {
 			}
 		}
 	},
-	entry: './main.js',
+	entry: './timeit/main.js',
 	output: {
 		path: 'build/',
 		filename: 'app.js'
@@ -25,7 +25,9 @@ module.exports = {
 	sassLoader: {
 		includePaths: ['./node_modules/foundation-sites/scss']
 	},
-	postcss: [autoprefixer({browsers: ['last 2 versions']})],
+	postcss: [autoprefixer({
+		browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
+	})],
 	module: {
 		loaders: [
 			{
@@ -47,6 +49,10 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './index.html'
 		}),
-		new ExtractTextPlugin('styles.[contenthash].css', {allChunks: true}),
+		new ExtractTextPlugin(
+			'styles.[contenthash].css',
+			{allChunks: true}
+		),
+		new webpack.NoErrorsPlugin()
 	]
 }

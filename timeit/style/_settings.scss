@@ -249,7 +249,7 @@ $button-color: $white;
 $button-color-alt: $black;
 $button-radius: $global-radius;
 $button-sizes: (
-  tiny: .6rem,
+  tiny: 0.6rem,
   small: 0.75rem,
   default: 0.9rem,
   large: 1.25rem,
@@ -535,7 +535,7 @@ $switch-margin: $global-margin;
 $switch-paddle-background: $white;
 $switch-paddle-offset: 0.25rem;
 $switch-paddle-radius: $global-radius;
-$switch-paddle-transition: all .25s ease-out;
+$switch-paddle-transition: all 0.25s ease-out;
 
 // 32. Table
 // ---------
@@ -615,7 +615,7 @@ $tooltip-radius: $global-radius;
 $topbar-padding: 0.5rem;
 $topbar-background: $light-gray;
 $topbar-submenu-background: $topbar-background;
-$topbar-title-spacing: 0.45rem 1rem 0 1rem;
+$topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
 $topbar-input-width: 200px;
 $topbar-unstack-breakpoint: medium;
 

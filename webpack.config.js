@@ -7,6 +7,9 @@ var webpack = require('webpack')
 var autoprefixer = require('autoprefixer')
 
 module.exports = {
+	resolve: {
+		extensions: ['', '.js', '.jsx', '.scss']
+	},
 	devServer: {
 		inline: true,
 		context: 'build',

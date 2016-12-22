@@ -1,4 +1,4 @@
-import './style/app.scss'
+import './style/app'
 
 import {createStore} from 'redux'
 

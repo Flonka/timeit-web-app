@@ -20,7 +20,7 @@ module.exports = {
 			}
 		}
 	},
-	entry: './timeit/main.js',
+	entry: './timeit/main',
 	output: {
 		path: 'build/',
 		filename: 'app.js'

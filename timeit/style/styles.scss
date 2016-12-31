@@ -3,4 +3,4 @@
 @import 'settings';
 @import 'foundation';
 @import 'foundation-build';
-@include foundation-build($flex: false);
+@include foundation-build($flex: true);

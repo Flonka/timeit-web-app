@@ -1,25 +1,20 @@
+const process = require('process')
 // Webpack Plugins
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
 
 // Post-css plugins
-var autoprefixer = require('autoprefixer')
+const autoprefixer = require('autoprefixer')
 
-module.exports = {
+const TARGET = process.env.npm_lifecycle_event
+
+const common = {
 	resolve: {
 		extensions: ['', '.js', '.jsx', '.scss']
 	},
-	devServer: {
-		inline: true,
-		context: 'build',
-		port: 9999,
-		proxy: {
-			'/api': {
-				target: 'http://localhost:8080'
-			}
-		}
-	},
+
 	entry: './timeit/main',
 	output: {
 		path: 'build/',
@@ -59,3 +54,27 @@ module.exports = {
 		new webpack.NoErrorsPlugin()
 	]
 }
+
+var buildConfig
+switch (TARGET) {
+	case 'build':
+		buildConfig = merge(common)
+		break
+	case 'start':
+		buildConfig = merge(
+			common,
+			{devServer: {
+				inline: true,
+				context: 'build',
+				port: 9999,
+				proxy: {
+					'/api': {
+						target: 'http://localhost:8080'
+					}
+				}
+			}}
+		)
+		break
+}
+
+module.exports = buildConfig

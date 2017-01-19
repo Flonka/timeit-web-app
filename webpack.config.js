@@ -61,6 +61,7 @@ const common = {
 			filename: 'vendor.[chunkhash].js',
 			minChunks: isVendor
 		}),
+		new webpack.optimize.OccurrenceOrderPlugin(),
 		new CleanWebpackPlugin([BUILD_DIR]),
 		new webpack.NoErrorsPlugin()
 	]
@@ -81,7 +82,14 @@ const dev = {
 }
 
 const prod = {
-	devtool: 'source-map'
+	devtool: 'source-map',
+	plugins: [
+		new webpack.optimize.UglifyJsPlugin({
+			mangle: {
+				except: ['webpackJsonp']
+			}
+		})
+	]
 }
 
 var buildConfig

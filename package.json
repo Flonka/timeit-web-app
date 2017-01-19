@@ -4,7 +4,8 @@
   "description": "React web app for timing stuff",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --colors",
+    "build-dev": "webpack --progress --colors",
+    "build-prod": "webpack --progress --colors",
     "start": "webpack-dev-server --progress --colors --inline"
   },
   "repository": {

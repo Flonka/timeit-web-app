@@ -49,6 +49,7 @@ const common = {
 		]
 	},
 	plugins: [
+		new webpack.BannerPlugin("Timeit webapplication by Flonka"),
 		new HtmlWebpackPlugin({
 			template: './index.html'
 		}),
@@ -85,10 +86,17 @@ const prod = {
 	devtool: 'source-map',
 	plugins: [
 		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
+			},
 			mangle: {
 				except: ['webpackJsonp']
 			}
-		})
+		}),
+		new webpack.optimize.DedupePlugin(),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify('production')
+		}),
 	]
 }
 

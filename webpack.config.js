@@ -23,7 +23,6 @@ const common = {
 	},
 	output: {
 		path: BUILD_DIR,
-		filename: 'app.[chunkhash].js'
 	},
 	sassLoader: {
 		includePaths: ['./node_modules/foundation-sites/scss']
@@ -54,13 +53,17 @@ const common = {
 			template: './index.html'
 		}),
 		new ExtractTextPlugin(
-			'styles.[contenthash].css',
+			'[name].[contenthash].css',
 			{allChunks: true}
 		),
 		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor',
-			filename: 'vendor.[chunkhash].js',
+			names: ['vendor'],
+			filename: '[name].[chunkhash].js',
 			minChunks: isVendor
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'manifest',
+			filename: '[name].[chunkhash].js',
 		}),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new CleanWebpackPlugin([BUILD_DIR]),
@@ -75,6 +78,9 @@ function isVendor(module, count) {
 
 
 const dev = {
+	output: {
+		filename: 'app.js',
+	},
 	debug: true,
 	devtool: 'eval-source-map',
 	plugins: [
@@ -83,6 +89,11 @@ const dev = {
 }
 
 const prod = {
+	output: {
+		filename: 'app.[chunkhash].js',
+		chunkFilename: '[chunkhash].js',
+	},
+	recordsPath: 'records.json',
 	devtool: 'source-map',
 	plugins: [
 		new webpack.optimize.UglifyJsPlugin({

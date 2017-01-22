@@ -98,7 +98,7 @@ const prod = {
 				except: ['webpackJsonp']
 			}
 		}),
-		new webpack.optimize.DedupePlugin(),
+		new webpack.HashedModuleIdsPlugin(),
 	]
 }
 

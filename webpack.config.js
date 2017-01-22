@@ -6,16 +6,13 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-// Post-css plugins
-const autoprefixer = require('autoprefixer')
-
 const TARGET = process.env.npm_lifecycle_event
 
 const BUILD_DIR = 'build/'
 
 const common = {
 	resolve: {
-		extensions: ['', '.js', '.jsx', '.scss']
+		extensions: ['.js', '.jsx', '.scss']
 	},
 	entry: {
 		app: './timeit/main',
@@ -24,26 +21,36 @@ const common = {
 	output: {
 		path: BUILD_DIR,
 	},
-	sassLoader: {
-		includePaths: ['./node_modules/foundation-sites/scss']
-	},
-	postcss: [autoprefixer({
-		browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
-	})],
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract(
-					'style-loader',
-					'css-loader!postcss-loader!sass-loader'
-				)
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: 'style-loader',
+					loader: [
+						{
+							loader: 'css-loader',
+							options: {
+								minimize: true
+							}
+						},
+						{
+							loader: 'postcss-loader',
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								includePaths: ['./node_modules/foundation-sites/scss']
+							}
+						}
+
+					]
+				})
 			},
 			{
 				test: /\.jsx?$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/,
-				cacheDirectory: true
 			}
 		]
 	},
@@ -52,22 +59,16 @@ const common = {
 		new HtmlWebpackPlugin({
 			template: './index.html'
 		}),
-		new ExtractTextPlugin(
-			'[name].[contenthash].css',
-			{allChunks: true}
-		),
-		new webpack.optimize.CommonsChunkPlugin({
-			names: ['vendor'],
-			filename: '[name].[chunkhash].js',
-			minChunks: isVendor
+		new ExtractTextPlugin({
+			filename:'[name].[contenthash].css',
+			allChunks: true
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
-			name: 'manifest',
-			filename: '[name].[chunkhash].js',
+			names: ['vendor', 'manifest'],
+			filename: '[name].[chunkhash].js'
 		}),
-		new webpack.optimize.OccurrenceOrderPlugin(),
 		new CleanWebpackPlugin([BUILD_DIR]),
-		new webpack.NoErrorsPlugin()
+		new webpack.NoEmitOnErrorsPlugin()
 	]
 }
 
@@ -79,9 +80,8 @@ function isVendor(module, count) {
 
 const dev = {
 	output: {
-		filename: 'app.js',
+		filename: '[name].js',
 	},
-	debug: true,
 	devtool: 'eval-source-map',
 	plugins: [
 		new webpack.NamedModulesPlugin()
@@ -93,21 +93,15 @@ const prod = {
 		filename: 'app.[chunkhash].js',
 		chunkFilename: '[chunkhash].js',
 	},
-	recordsPath: 'records.json',
 	devtool: 'source-map',
 	plugins: [
 		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false
-			},
+			sourceMap: true,
 			mangle: {
 				except: ['webpackJsonp']
 			}
 		}),
 		new webpack.optimize.DedupePlugin(),
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify('production')
-		}),
 	]
 }
 

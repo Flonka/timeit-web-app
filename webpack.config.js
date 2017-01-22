@@ -35,13 +35,10 @@ const common = {
 							}
 						},
 						{
-							loader: 'postcss-loader',
+							loader: 'postcss-loader'
 						},
 						{
-							loader: 'sass-loader',
-							options: {
-								includePaths: ['./node_modules/foundation-sites/scss']
-							}
+							loader: 'sass-loader'
 						}
 
 					]

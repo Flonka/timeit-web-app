@@ -57,7 +57,7 @@ const common = {
 			template: './index.html'
 		}),
 		new ExtractTextPlugin({
-			filename:'[name].[contenthash].css',
+			filename:'styles.[contenthash].css',
 			allChunks: true
 		}),
 		new webpack.optimize.CommonsChunkPlugin({

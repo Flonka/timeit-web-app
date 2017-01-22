@@ -1,4 +1,5 @@
 const process = require('process')
+const path = require('path')
 // Webpack Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -8,7 +9,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const TARGET = process.env.npm_lifecycle_event
 
-const BUILD_DIR = 'build/'
+const BUILD_DIR = path.join(__dirname, 'build')
 
 const common = {
 	resolve: {
@@ -117,7 +118,8 @@ switch (TARGET) {
 			dev,
 			{devServer: {
 				inline: true,
-				context: 'build',
+				contentBase: BUILD_DIR,
+				compress: true,
 				port: 9999,
 				proxy: {
 					'/api': {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-dev": "webpack --progress --colors",
-    "build-prod": "webpack --progress --colors -p",
+    "build-prod": "webpack --progress --colors -p --hide-modules",
     "start": "webpack-dev-server --progress --colors --inline"
   },
   "repository": {

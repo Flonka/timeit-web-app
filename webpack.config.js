@@ -30,9 +30,6 @@ const common = {
 					loader: [
 						{
 							loader: 'css-loader',
-							options: {
-								minimize: true
-							}
 						},
 						{
 							loader: 'postcss-loader'

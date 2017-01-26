@@ -1,10 +1,10 @@
 const process = require('process')
 const path = require('path')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
 // Webpack Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const TARGET = process.env.npm_lifecycle_event
@@ -46,6 +46,9 @@ const common = {
 				test: /\.jsx?$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/,
+				options: {
+					cacheDirectory: true
+				}
 			}
 		]
 	},

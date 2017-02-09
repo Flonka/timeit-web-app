@@ -16,7 +16,7 @@ const common = {
 		extensions: ['.js', '.jsx', '.scss']
 	},
 	entry: {
-		app: './timeit/main',
+		app: path.join(__dirname, 'timeit', 'main'),
 		vendor: ['react', 'react-dom']
 	},
 	output: {
@@ -53,9 +53,12 @@ const common = {
 		]
 	},
 	plugins: [
-		new webpack.BannerPlugin("Timeit webapplication by Flonka"),
+		new webpack.BannerPlugin({
+			banner: 'Timeit webapplication by Flonka',
+			test: /app/
+		}),
 		new HtmlWebpackPlugin({
-			template: './index.html'
+			template: path.join(__dirname, 'timeit', 'index.html')
 		}),
 		new ExtractTextPlugin({
 			filename:'styles.[contenthash].css',

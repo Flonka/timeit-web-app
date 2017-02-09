@@ -1,20 +1,12 @@
 import React from 'react'
 
+import TopMenu from './TopMenu'
+
 const App = () => {
 	return (
-		<div>
-			<div className="row">
-				<h1>Hell0 React</h1>
-				<p>asdf</p>
-			</div>
-			<div className="row">
-				<div className="small-12 large-4 columns">
-					<p>Hejhej</p>
-				</div>
-			</div>
-		</div>
+		<TopMenu>
+		</TopMenu>
 	)
 }
-
 
 export default App
